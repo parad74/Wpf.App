@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://wpf.book.core" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="BookService" targetNamespace="http://wpf.book.core" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://wpf.book.core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" />
+      <xs:element name="Ping">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PingResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" minOccurs="0" name="PingResult" nillable="true" type="q1:PingOutput" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllBook">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllBookResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" minOccurs="0" name="GetAllBookResult" nillable="true" type="q2:ResultOfArrayOfBookAeCEsgg9" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBookByISBN">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ISBN" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBookByISBNResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" minOccurs="0" name="GetBookByISBNResult" nillable="true" type="q3:ResultOfBookAeCEsgg9" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBookById">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBookByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" minOccurs="0" name="GetBookByIdResult" nillable="true" type="q4:ResultOfBookAeCEsgg9" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddBook">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" minOccurs="0" name="book" nillable="true" type="q5:Book" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddBookResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" minOccurs="0" name="AddBookResult" nillable="true" type="q6:Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteBook">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="id" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteBookResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" minOccurs="0" name="DeleteBookResult" nillable="true" type="q7:Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteAll">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteAllResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" minOccurs="0" name="DeleteAllResult" nillable="true" type="q8:Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" />
+      <xs:complexType name="PingOutput">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PingOutput" nillable="true" type="tns:PingOutput" />
+      <xs:complexType name="ResultOfArrayOfBookAeCEsgg9">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="ArrayOfBook" Namespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" />
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Result">
+            <xs:sequence>
+              <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" minOccurs="0" name="Data" nillable="true" type="q1:ArrayOfBook" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ResultOfArrayOfBookAeCEsgg9" nillable="true" type="tns:ResultOfArrayOfBookAeCEsgg9" />
+      <xs:complexType name="Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsCompleted" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Result" nillable="true" type="tns:Result" />
+      <xs:complexType name="ResultOfBookAeCEsgg9">
+        <xs:annotation>
+          <xs:appinfo>
+            <GenericType Name="ResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+              <GenericParameter Name="Book" Namespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" />
+            </GenericType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Result">
+            <xs:sequence>
+              <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" minOccurs="0" name="Data" nillable="true" type="q2:Book" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="ResultOfBookAeCEsgg9" nillable="true" type="tns:ResultOfBookAeCEsgg9" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCF.Services.ServiceContract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfBook">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Book" nillable="true" type="tns:Book" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfBook" nillable="true" type="tns:ArrayOfBook" />
+      <xs:complexType name="Book">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Author" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FrontPage" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="ID" type="xs:long" />
+          <xs:element minOccurs="0" name="ISBN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Year" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Book" nillable="true" type="tns:Book" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IBookService_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetAllBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetAllBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetBookByISBN_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByISBN" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetBookByISBN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByISBNResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetBookById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookById" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetBookById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_AddBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_AddBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_DeleteBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_DeleteBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_DeleteAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAll" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_DeleteAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBookService">
+    <wsdl:operation name="Ping">
+      <wsdl:input wsaw:Action="http://wpf.book.core/IBookService/Ping" message="tns:IBookService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://wpf.book.core/IBookService/PingResponse" message="tns:IBookService_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBook">
+      <wsdl:input wsaw:Action="http://wpf.book.core/IBookService/GetAllBook" message="tns:IBookService_GetAllBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://wpf.book.core/IBookService/GetAllBookResponse" message="tns:IBookService_GetAllBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookByISBN">
+      <wsdl:input wsaw:Action="http://wpf.book.core/IBookService/GetBookByISBN" message="tns:IBookService_GetBookByISBN_InputMessage" />
+      <wsdl:output wsaw:Action="http://wpf.book.core/IBookService/GetBookByISBNResponse" message="tns:IBookService_GetBookByISBN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookById">
+      <wsdl:input wsaw:Action="http://wpf.book.core/IBookService/GetBookById" message="tns:IBookService_GetBookById_InputMessage" />
+      <wsdl:output wsaw:Action="http://wpf.book.core/IBookService/GetBookByIdResponse" message="tns:IBookService_GetBookById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddBook">
+      <wsdl:input wsaw:Action="http://wpf.book.core/IBookService/AddBook" message="tns:IBookService_AddBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://wpf.book.core/IBookService/AddBookResponse" message="tns:IBookService_AddBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBook">
+      <wsdl:input wsaw:Action="http://wpf.book.core/IBookService/DeleteBook" message="tns:IBookService_DeleteBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://wpf.book.core/IBookService/DeleteBookResponse" message="tns:IBookService_DeleteBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAll">
+      <wsdl:input wsaw:Action="http://wpf.book.core/IBookService/DeleteAll" message="tns:IBookService_DeleteAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://wpf.book.core/IBookService/DeleteAllResponse" message="tns:IBookService_DeleteAll_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBookService" type="tns:IBookService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://wpf.book.core/IBookService/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBook">
+      <soap:operation soapAction="http://wpf.book.core/IBookService/GetAllBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookByISBN">
+      <soap:operation soapAction="http://wpf.book.core/IBookService/GetBookByISBN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookById">
+      <soap:operation soapAction="http://wpf.book.core/IBookService/GetBookById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddBook">
+      <soap:operation soapAction="http://wpf.book.core/IBookService/AddBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteBook">
+      <soap:operation soapAction="http://wpf.book.core/IBookService/DeleteBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAll">
+      <soap:operation soapAction="http://wpf.book.core/IBookService/DeleteAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BookService">
+    <wsdl:port name="BasicHttpBinding_IBookService" binding="tns:BasicHttpBinding_IBookService">
+      <soap:address location="http://localhost:5051/BookService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
